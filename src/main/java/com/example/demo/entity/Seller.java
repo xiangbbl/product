@@ -1,4 +1,3 @@
-
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
@@ -7,22 +6,24 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.ArrayList;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Product")
-public class Product {
+@Table(name = "Seller")
+public class Seller {
 
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private int quantity;
-    private double price;
 
-    @ManyToOne
-    @JsonIgnore
-    private Seller seller;
-    }
+
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "seller_id")
+    private List<Product> products;
+
+}

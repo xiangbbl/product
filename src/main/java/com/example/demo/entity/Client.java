@@ -1,28 +1,26 @@
-
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.util.List;
 
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-@Table(name = "Product")
-public class Product {
-
+@Table(name = "Client")
+public class Client {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
-    private int quantity;
-    private double price;
+    private String email;
 
-    @ManyToOne
-    @JsonIgnore
-    private Seller seller;
-    }
+    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
+    @JoinColumn(name = "")
+    private List<Product> products;
+
+}

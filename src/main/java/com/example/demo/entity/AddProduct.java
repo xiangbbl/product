@@ -1,7 +1,5 @@
-
 package com.example.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,16 +11,13 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 @Table(name = "Product")
-public class Product {
-
+public class AddProduct {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     private Long id;
     private String name;
     private int quantity;
     private double price;
+    private Long seller_id;
 
-    @ManyToOne
-    @JsonIgnore
-    private Seller seller;
-    }
+}
