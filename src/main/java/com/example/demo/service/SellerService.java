@@ -10,6 +10,7 @@ import com.example.demo.repository.SellerRep;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
@@ -34,7 +35,8 @@ public class SellerService {
     /*public Seller saveSeller(SellRequest request){
         return sellerRep.save(request.getSeller());
     }*/
-    public Seller saveSeller(Seller seller){
+    public Seller saveSeller(Seller seller) {
+        seller.getProducts().forEach(d->d.setSeller(seller));
         return sellerRep.save(seller);
     }
     public Seller getSellerById(Long id){
@@ -52,6 +54,15 @@ public class SellerService {
         }
         return saveProductTest.saveAll(addProduct);
         //return sellerRep.saveProducts(addProduct);
+    }
+
+    public List<Product> saveProductsToSeller(Long SellerId, List<Product> products){
+        int length = products.size();
+        Seller seller = sellerRep.findById(SellerId).orElse(null);
+        for(int i = 0; i < length; i++){
+            products.get(i).setSeller(seller);
+        }
+        return productRep.saveAll(products);
     }
 
     public List<Seller_product_Name> SellerProductName(){

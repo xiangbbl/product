@@ -1,5 +1,6 @@
 package com.example.demo.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -22,8 +23,7 @@ public class Seller {
     private String name;
 
 
-    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "seller_id")
+    @OneToMany(mappedBy = "seller", targetEntity = Product.class, cascade = CascadeType.ALL)
     private List<Product> products;
 
 }

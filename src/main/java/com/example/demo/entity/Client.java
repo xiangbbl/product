@@ -2,6 +2,7 @@ package com.example.demo.entity;
 
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Getter;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
@@ -19,8 +20,14 @@ public class Client {
     private String name;
     private String email;
 
-    @OneToMany(targetEntity = Product.class, cascade = CascadeType.ALL)
-    @JoinColumn(name = "")
-    private List<Product> products;
+    //@OneToOne(targetEntity = Chart.class, cascade = CascadeType.ALL)
+    //@OneToOne
+    //@OneToOne(targetEntity = Chart.class, cascade = CascadeType.ALL)
+    //@OneToMany(mappedBy = "client", cascade = CascadeType.ALL)
+    //@JoinColumn(name = "client_id")
+    @PrimaryKeyJoinColumn
+    @OneToOne(cascade = CascadeType.ALL)
+    private Chart chart;
+
 
 }

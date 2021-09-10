@@ -2,6 +2,7 @@
 package com.example.demo.entity;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -24,5 +25,7 @@ public class Product {
 
     @ManyToOne
     @JsonIgnore
+    @JoinColumn(name = "seller_id")
     private Seller seller;
+
     }

@@ -28,11 +28,17 @@ public class SellerController {
     public Seller saveSeller(@RequestBody Seller seller) {
         return sellerService.saveSeller(seller);
     }
-    @PostMapping("/addProducts/{id}")
+    /*@PostMapping("/addProducts/{id}")
     public List<AddProduct> saveProducts(@PathVariable Long id, @RequestBody List<AddProduct> product){
         return sellerService.saveProducts(id, product);
-    }
+        //return sellerService.saveProductsToSeller(id, product);
+    }*/
 
+    @PostMapping("/addProductsToSeller/{id}")
+    public List<Product> saveProducts(@PathVariable Long id, @RequestBody List<Product> product){
+        return sellerService.saveProductsToSeller(id, product);
+        //return sellerService.saveProductsToSeller(id, product);
+    }
     /*public Object saveSellers(@RequestBody SellRequest request) {
     }*/
     @GetMapping(path = "/id/{id}")
@@ -48,4 +54,5 @@ public class SellerController {
     public List<Seller_product_Name> getSeller_name(){
         return sellerService.SellerProductName();
     }
+
 }
